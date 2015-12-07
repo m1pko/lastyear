@@ -1,0 +1,46 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>NDN | Last Year</title>
+  <meta name="lastyear" content="Albuns of the Last Year">
+  <meta name="Miguel Barba" content="LastYear">
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+	<script type="text/javascript" src="js/json2.js"></script>
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+		<!--$(document).ready(function() {
+	    $.getJSON("http://ws.audioscrobbler.com/2.0/?method=user.getTopArtists&user=micky_1punch_ko&api_key=8295890448112bd3f26d3bd606610fe2&limit=10&format=json&callback=?", function(json) {
+	        var html = '';
+	        $.each(json.topartists.artist, function(i, item) {
+	            html += "<p><a href=" + item.url + " target='_blank'>" + item.name + " - " + "Play count : " +item.playcount + "</a></p>";
+	        });
+	        $('#topArtists').append(html);
+	    });
+	});-->
+	<script>
+
+	$(document).ready(function() {
+	    $.getJSON("http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=micky_1punch_ko&period=12month&limit=20&api_key=8295890448112bd3f26d3bd606610fe2&format=json", function(json) {
+	        var html = '';
+	        $.each(json.topalbums.album, function(i, item) {
+	        	html += "<p><a href=" + item.url + " target='_blank'>" + item.artist.name + " - " + item.name + " - " + "Play count : " +item.playcount + "</a></p>";
+	        });
+	        $('#topAlbumsYear').append(html);
+	    });
+	});
+
+	</script>
+	<div id="topAlbumsYear"></div>
+</body>
+</html>
