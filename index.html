@@ -8,7 +8,7 @@
   <meta name="lastyear" content="Albuns of the Last Year">
   <meta name="Miguel Barba" content="LastYear">
 
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 	<script type="text/javascript" src="js/json2.js"></script>
 
@@ -34,7 +34,14 @@
 	    $.getJSON("http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=micky_1punch_ko&period=12month&limit=20&api_key=8295890448112bd3f26d3bd606610fe2&format=json", function(json) {
 	        var html = '';
 	        $.each(json.topalbums.album, function(i, item) {
-	        	html += "<p><a href=" + item.url + " target='_blank'>" + item.artist.name + " - " + item.name + " - " + "Play count : " +item.playcount + "</a></p>";
+	        	html += "<p><a href=" + item.url + " target='_blank'>" + item.artist.name + " - " + item.name + " - " + "Play count : " + item.playcount;
+
+	        	$.getJSON("http://ws.audioscrobbler.com/2.0/?method=album.getInfo&user=micky_1punch_ko&mbid=" + item.mbid + "&api_key=8295890448112bd3f26d3bd606610fe2&format=json", function(json_album){
+	        		$.each(json_album.album, function(j, item_album){
+	        			html += " - Release Date : " + item_album.releasedate + "</a></p>";
+	        		});
+	        	});
+
 	        });
 	        $('#topAlbumsYear').append(html);
 	    });
