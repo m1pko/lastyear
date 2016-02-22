@@ -9,10 +9,13 @@
   <meta name="Miguel Barba" content="LastYear">
 
   <link rel="stylesheet" type="text/css" href="css/main_styles.css">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 
 	<script type="text/javascript" src="js/json2.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+  <script src="js/modules.js"></script>
+  <script src="js/controller.js"></script>
 
   <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -20,7 +23,7 @@
 
 </head>
 
-<body>
+<body ng-app="lastyearApp" ng-controller="formController">
 
 	<script>
 
@@ -55,6 +58,34 @@
 	});
 
 	</script>
+	<div class="centerDiv">
+		<form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+			<div class="form-group">
+				<label>Last.fm User Name</label>
+				<input type="text" name="lastfmuser" class="form-control" ng-model="lastfmuser" required>
+				<p ng-show="userForm.lastfmuser.$invalid && !userForm.lastfmuser.$pristine" class="help-block">You Last.fm username is required.</p>
+			</div>
+			<div class="form-group">
+				<label>Max Records (1 to 100)</label>
+				<input type="text" name="maxrecords" class="form-control" ng-model="maxrecords" ng-pattern="maxrecordsRegexp" required>
+			<div />
+			<div class="form-group">
+				<label>Period</label>
+				<select name="period" ng-model="period" class="form-control">
+				  <option value="overall">overall</option>
+				  <option value="7day">7day</option>
+				  <option value="1month">1month</option>
+				  <option value="3month">3month</option>
+				  <option value="6month">6month</option>
+				  <option value="12month">12month</option>
+				</select>
+			<div/>
+			<div class="form-group">
+				<br/>
+				<button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Submit</button>
+			<div />
+		</form>
+	</div>
 	<div id="topAlbumsYear" class="centerDiv"></div>
 </body>
 </html>
