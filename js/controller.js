@@ -28,8 +28,6 @@ lastyearApp.controller('formController', ['$scope','dataShare',function($scope,d
 
   };
 
-  $scope.isFormShowing = true;
-  $scope.isListShowing = false;
   $scope.hideForm = function () {
     //If DIV is hidden it will be visible and vice versa.
     $scope.isFormShowing = false;
