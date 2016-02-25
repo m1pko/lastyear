@@ -23,10 +23,22 @@ lastyearApp.controller('formController', ['$scope','dataShare',function($scope,d
 
     // check to make sure the form is completely valid
     if (isValid) {
-      alert('our form is amazing');
       dataShare.sendData($scope.lastfmuser + "@" + $scope.maxrecords + "@" + $scope.period);
     }
 
+  };
+
+  $scope.isFormShowing = true;
+  $scope.isListShowing = false;
+  $scope.hideForm = function () {
+    //If DIV is hidden it will be visible and vice versa.
+    $scope.isFormShowing = false;
+    $scope.isListShowing = true;
+  };
+  $scope.hideList = function () {
+    //If DIV is hidden it will be visible and vice versa.
+    $scope.isFormShowing = true;
+    $scope.isListShowing = false;
   };
 
 }]);
@@ -44,7 +56,7 @@ lastyearApp.controller('lastFMAPIs', ['$scope','dataShare',
     }
 ]);
 
-function lastFMAPICalls (lastfmuser, period, limit, year)
+function lastFMAPICalls (lastfmuser, limit, period, year)
 {
   var html = "";
   var once = 0;

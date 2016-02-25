@@ -24,7 +24,10 @@
 
 <body ng-app="lastyearApp" ng-controller="formController">
 
-  <div class="centerDiv">
+  <div id="header">
+    <center><br/>lastyear</center>
+  </div>
+  <div class="centerDiv" ng-show="isFormShowing">
     <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
       <div class="form-group">
         <label>Last.fm User Name</label>
@@ -45,13 +48,23 @@
           <option value="6month">6month</option>
           <option value="12month">12month</option>
         </select>
-      <div/>
+      </div>
       <div class="form-group">
         <br/>
-        <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Submit</button>
-      <div />
+        <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid" ng-click="hideForm();">
+          Submit
+        </button>
+      </div>
     </form>
   </div>
-  <div id="topAlbumsYear" class="centerDiv" ng-controller="lastFMAPIs"></div>
+  <div id="topAlbumsYear" class="centerDiv" ng-controller="lastFMAPIs" ng-show="isListShowing"></div>
+  <div ng-show="isListShowing">
+    <button type="submit" class="btn btn-primary" ng-click="hideList();"> 
+      Back
+    </button>
+  </div>
+  <div id="footer">
+    <center>About</center>
+  </div>
 </body>
 </html>
