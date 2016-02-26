@@ -28,6 +28,8 @@ lastyearApp.controller('formController', ['$scope','dataShare',function($scope,d
 
   };
 
+  $scope.isFormShowing = true;
+  $scope.isListShowing = false;
   $scope.hideForm = function () {
     //If DIV is hidden it will be visible and vice versa.
     $scope.isFormShowing = false;
@@ -37,7 +39,18 @@ lastyearApp.controller('formController', ['$scope','dataShare',function($scope,d
     //If DIV is hidden it will be visible and vice versa.
     $scope.isFormShowing = true;
     $scope.isListShowing = false;
+
+    $scope.lastfmuser = "";
+    $scope.maxrecords = "";
+    $scope.period = "";
+
   };
+
+  $scope.deleteDivContent = function()
+                          {
+                            var divElem = angular.element(document.querySelector('#topAlbumsYear'));
+                            divElem.empty();
+                          };
 
 }]);
 
@@ -50,7 +63,8 @@ lastyearApp.controller('lastFMAPIs', ['$scope','dataShare',
                                   var paramArray = text.split("@");
                                   lastFMAPICalls(paramArray[0],paramArray[1],paramArray[2],2015);
                                   //$scope.text = text;
-        });
+      });
+      
     }
 ]);
 
