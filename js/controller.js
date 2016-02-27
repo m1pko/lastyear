@@ -17,13 +17,14 @@ lastyearApp.factory('dataShare',function($rootScope){
 lastyearApp.controller('formController', ['$scope','dataShare',function($scope,dataShare) {
 
   $scope.maxrecordsRegexp = /^(?!0)(?=100$|..$|.$)\d+$/;
+  $scope.yearsrangeRegexp = /^20[01][0-6]$/;
 
   // function to submit the form after all validation has occurred            
   $scope.submitForm = function(isValid) {
 
     // check to make sure the form is completely valid
     if (isValid) {
-      dataShare.sendData($scope.lastfmuser + "@" + $scope.maxrecords + "@" + $scope.period);
+      dataShare.sendData($scope.lastfmuser + "@" + $scope.maxrecords + "@" + $scope.period + "@" + $scope.year);
     }
 
   };
@@ -40,6 +41,7 @@ lastyearApp.controller('formController', ['$scope','dataShare',function($scope,d
     $scope.isFormShowing = true;
     $scope.isListShowing = false;
 
+    $scope.year = "";
     $scope.lastfmuser = "";
     $scope.maxrecords = "";
     $scope.period = "";
@@ -61,7 +63,7 @@ lastyearApp.controller('lastFMAPIs', ['$scope','dataShare',
       $scope.$on('data_shared',function(){
                                   var text =  dataShare.getData();
                                   var paramArray = text.split("@");
-                                  lastFMAPICalls(paramArray[0],paramArray[1],paramArray[2],2015);
+                                  lastFMAPICalls(paramArray[0],paramArray[1],paramArray[2],paramArray[3]);
                                   //$scope.text = text;
       });
       
