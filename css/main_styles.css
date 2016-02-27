@@ -1,29 +1,27 @@
 .center-div-1{
-	width:50%;
-	margin:0 auto;
-	border-radius: 1px;
-	background:#FFF;
+	float: left;
+	width:500px;
+	height:500px;
+	margin:10 px;
+	border: 1px solid black;
 	padding:10px;
-	float:left;
 }
 
 .center-div-2{
-	width:80%;
+	float: left;
+	width:100%;
 	margin:0 auto;
-	border-radius: 1px;
-	background:#FFF;
+	border: 1px solid black;
 	padding:10px;
-	float:left;
 }
 
 #header {
 	float:left;
-	width: 100%;
+	width: 1000px;
 	height: 100px;
 	margin-top: 0px;
 }
 
 .top-align{
-  margin-top:-100px;
 	vertical-align: top;        
 }

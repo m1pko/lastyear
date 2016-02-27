@@ -28,10 +28,10 @@
     <center><br/>lastyear</center>
   </div>
   <div class="center-div-1">
-    <img class="top-align" src="img/lastyear.png"/>
+    <img src="img/lastyear.png"/>
   </div>
   <div class="center-div-1">
-    <form name="userForm" ng-submit="submitForm(userForm.$valid)" class="col-xs-6" novalidate>
+    <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
       <div class="form-group">
         <label>Last Year (2000 to 2016)</label>
         <input type="text" name="year" class="form-control" ng-model="year" ng-pattern="yearsrangeRegexp" required>
@@ -64,11 +64,13 @@
       </div>
     </form>
   </div>
-  <div id="topAlbumsYear" class="center-div-2" ng-controller="lastFMAPIs" ng-show="isListShowing && !isFormShowing"></div>
-  <div ng-show="isListShowing && !isFormShowing">
-    <button type="submit" class="btn btn-primary" ng-click="hideList(); deleteDivContent();"> 
-      Clear
-    </button>
+  <div class="center-div-2">
+    <div id="topAlbumsYear" ng-controller="lastFMAPIs" ng-show="isListShowing && !isFormShowing"></div>
+    <div ng-show="isListShowing && !isFormShowing">
+      <button type="submit" class="btn btn-primary" ng-click="hideList(); deleteDivContent();"> 
+        Clear
+      </button>
+    </div>
   </div>
 </body>
 </html>
