@@ -1,18 +1,15 @@
 .center-div-1{
 	float: left;
 	width:500px;
-	height:500px;
-	margin:10 px;
-	border: 1px solid black;
-	padding:10px;
+	height:400px;
 }
 
 .center-div-2{
 	float: left;
-	width:100%;
+	width:1000px;
 	margin:0 auto;
-	border: 1px solid black;
 	padding:10px;
+	text-align: center;
 }
 
 #header {

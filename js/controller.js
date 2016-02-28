@@ -74,6 +74,7 @@ function lastFMAPICalls (lastfmuser, limit, period, year)
 {
   var html = "";
   var once = 0;
+  var data_boo = false;
   $(document).ready(function() {
       $.getJSON("http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + lastfmuser + "&period=" + period + "&limit=" + limit + "&api_key=8295890448112bd3f26d3bd606610fe2&format=json", function(json) {
 
@@ -90,7 +91,8 @@ function lastFMAPICalls (lastfmuser, limit, period, year)
                   if (item_album_child.name == year && once == 0)
                   {
                     once++;
-                    html += "<p><a href=" + item.url + " target='_blank'>" + item.artist.name + " - " + item.name + " - " + "Play count : " + item.playcount + " - Year : " + item_album_child.name + "</a></p>";
+                    data_boo = true;
+                    html += "<p><a href=" + item.url + " target='_blank'>" + item.artist.name + " - " + item.name + " - " + "Play count : " + item.playcount + "</a></p>";
                     $('#topAlbumsYear').append(html);
                     html = "";
                   }
@@ -101,4 +103,10 @@ function lastFMAPICalls (lastfmuser, limit, period, year)
           });
       });
   });
+
+ if (!data_boo)
+ {
+  html = "<p>Nothing to list...</p>";
+  $('#topAlbumsYear').append(html);
+ }
 }
