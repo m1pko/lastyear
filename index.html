@@ -64,13 +64,11 @@
       </div>
     </form>
   </div>
-  <div class="center-div-2">
-    <div id="topAlbumsYear" ng-controller="lastFMAPIs" ng-show="isListShowing && !isFormShowing"></div>
-    <div ng-show="isListShowing && !isFormShowing">
-      <button type="submit" class="btn btn-primary" ng-click="hideList(); deleteDivContent();"> 
-        Clear
-      </button>
-    </div>
+  <div id="topAlbumsYear" class="center-div-2" ng-controller="lastFMAPIs" ng-show="isListShowing && !isFormShowing"></div>
+  <div class="center-div-2" ng-show="isListShowing && !isFormShowing">
+    <button type="submit" class="btn btn-primary" ng-click="hideList(); deleteDivContent();"> 
+      Clear
+    </button>
   </div>
 </body>
 </html>
