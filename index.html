@@ -24,8 +24,18 @@
 
 <body ng-app="lastyearApp" ng-controller="formController">
 
-  <div class="centerDiv">
+  <div id="header">
+    <center><br/>lastyear</center>
+  </div>
+  <div class="center-div-1">
+    <img src="img/lastyear.png"/>
+  </div>
+  <div class="center-div-1">
     <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+      <div class="form-group">
+        <label>Last Year (2000 to 2016)</label>
+        <input type="text" name="year" class="form-control" ng-model="year" ng-pattern="yearsrangeRegexp" required>
+      </div>
       <div class="form-group">
         <label>Last.fm User Name</label>
         <input type="text" name="lastfmuser" class="form-control" ng-model="lastfmuser" required>
@@ -34,7 +44,7 @@
       <div class="form-group">
         <label>Max Records (1 to 100)</label>
         <input type="text" name="maxrecords" class="form-control" ng-model="maxrecords" ng-pattern="maxrecordsRegexp" required>
-      <div />
+      </div>
       <div class="form-group">
         <label>Period</label>
         <select name="period" ng-model="period" class="form-control">
@@ -45,13 +55,20 @@
           <option value="6month">6month</option>
           <option value="12month">12month</option>
         </select>
-      <div/>
+      </div>
       <div class="form-group">
         <br/>
-        <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Submit</button>
-      <div />
+        <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid" ng-click="hideForm();">
+          Get the list!
+        </button>
+      </div>
     </form>
   </div>
-  <div id="topAlbumsYear" class="centerDiv" ng-controller="lastFMAPIs"></div>
+  <div id="topAlbumsYear" class="center-div-2" ng-controller="lastFMAPIs" ng-show="isListShowing && !isFormShowing"></div>
+  <div class="center-div-2" ng-show="isListShowing && !isFormShowing">
+    <button type="submit" class="btn btn-primary" ng-click="hideList(); deleteDivContent();"> 
+      Clear
+    </button>
+  </div>
 </body>
 </html>

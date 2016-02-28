@@ -17,17 +17,42 @@ lastyearApp.factory('dataShare',function($rootScope){
 lastyearApp.controller('formController', ['$scope','dataShare',function($scope,dataShare) {
 
   $scope.maxrecordsRegexp = /^(?!0)(?=100$|..$|.$)\d+$/;
+  $scope.yearsrangeRegexp = /^20[01][0-6]$/;
 
   // function to submit the form after all validation has occurred            
   $scope.submitForm = function(isValid) {
 
     // check to make sure the form is completely valid
     if (isValid) {
-      alert('our form is amazing');
-      dataShare.sendData($scope.lastfmuser + "@" + $scope.maxrecords + "@" + $scope.period);
+      dataShare.sendData($scope.lastfmuser + "@" + $scope.maxrecords + "@" + $scope.period + "@" + $scope.year);
     }
 
   };
+
+  $scope.isFormShowing = true;
+  $scope.isListShowing = false;
+  $scope.hideForm = function () {
+    //If DIV is hidden it will be visible and vice versa.
+    $scope.isFormShowing = false;
+    $scope.isListShowing = true;
+  };
+  $scope.hideList = function () {
+    //If DIV is hidden it will be visible and vice versa.
+    $scope.isFormShowing = true;
+    $scope.isListShowing = false;
+
+    $scope.year = "";
+    $scope.lastfmuser = "";
+    $scope.maxrecords = "";
+    $scope.period = "";
+
+  };
+
+  $scope.deleteDivContent = function()
+                          {
+                            var divElem = angular.element(document.querySelector('#topAlbumsYear'));
+                            divElem.empty();
+                          };
 
 }]);
 
@@ -38,16 +63,18 @@ lastyearApp.controller('lastFMAPIs', ['$scope','dataShare',
       $scope.$on('data_shared',function(){
                                   var text =  dataShare.getData();
                                   var paramArray = text.split("@");
-                                  lastFMAPICalls(paramArray[0],paramArray[1],paramArray[2],2015);
+                                  lastFMAPICalls(paramArray[0],paramArray[1],paramArray[2],paramArray[3]);
                                   //$scope.text = text;
-        });
+      });
+      
     }
 ]);
 
-function lastFMAPICalls (lastfmuser, period, limit, year)
+function lastFMAPICalls (lastfmuser, limit, period, year)
 {
   var html = "";
   var once = 0;
+  var data_boo = false;
   $(document).ready(function() {
       $.getJSON("http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + lastfmuser + "&period=" + period + "&limit=" + limit + "&api_key=8295890448112bd3f26d3bd606610fe2&format=json", function(json) {
 
@@ -64,7 +91,8 @@ function lastFMAPICalls (lastfmuser, period, limit, year)
                   if (item_album_child.name == year && once == 0)
                   {
                     once++;
-                    html += "<p><a href=" + item.url + " target='_blank'>" + item.artist.name + " - " + item.name + " - " + "Play count : " + item.playcount + " - Year : " + item_album_child.name + "</a></p>";
+                    data_boo = true;
+                    html += "<p><a href=" + item.url + " target='_blank'>" + item.artist.name + " - " + item.name + " - " + "Play count : " + item.playcount + "</a></p>";
                     $('#topAlbumsYear').append(html);
                     html = "";
                   }
@@ -75,4 +103,10 @@ function lastFMAPICalls (lastfmuser, period, limit, year)
           });
       });
   });
+
+ if (!data_boo)
+ {
+  html = "<p>Nothing to list...</p>";
+  $('#topAlbumsYear').append(html);
+ }
 }
