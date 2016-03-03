@@ -27,10 +27,13 @@ lastyearApp.controller('formController', ['$scope','dataShare',function($scope,d
       dataShare.sendData($scope.lastfmuser + "@" + $scope.maxrecords + "@" + $scope.period + "@" + $scope.year);
     }
 
+    $scope.buttonState = true;
+
   };
 
   $scope.isFormShowing = true;
   $scope.isListShowing = false;
+  //$scope.buttonState = false;
   $scope.hideForm = function () {
     //If DIV is hidden it will be visible and vice versa.
     $scope.isFormShowing = false;
@@ -40,6 +43,7 @@ lastyearApp.controller('formController', ['$scope','dataShare',function($scope,d
     //If DIV is hidden it will be visible and vice versa.
     $scope.isFormShowing = true;
     $scope.isListShowing = false;
+    $scope.buttonState = false;
 
     $scope.year = "";
     $scope.lastfmuser = "";
@@ -54,6 +58,8 @@ lastyearApp.controller('formController', ['$scope','dataShare',function($scope,d
                             divElem.empty();
                           };
 
+
+
 }]);
 
 lastyearApp.controller('lastFMAPIs', ['$scope','dataShare',
@@ -64,7 +70,13 @@ lastyearApp.controller('lastFMAPIs', ['$scope','dataShare',
                                   var text =  dataShare.getData();
                                   var paramArray = text.split("@");
                                   lastFMAPICalls(paramArray[0],paramArray[1],paramArray[2],paramArray[3]);
-                                  //$scope.text = text;
+                                  //var divElem = angular.element(document.querySelector('#topAlbumsYear'));
+                                  //alert(divElem.t);
+                                  //divElem.text == ""
+                                  //if (divElem.text == "")
+                                  //{
+                                  //  $('#topAlbumsYear').append("<p>Nothing to list...</p>");
+                                  //}
       });
       
     }
@@ -73,7 +85,7 @@ lastyearApp.controller('lastFMAPIs', ['$scope','dataShare',
 function lastFMAPICalls (lastfmuser, limit, period, year)
 {
   var html = "";
-  var once = 0;
+  var once, global_once = 0;
   var data_boo = false;
   $(document).ready(function() {
       $.getJSON("http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + lastfmuser + "&period=" + period + "&limit=" + limit + "&api_key=8295890448112bd3f26d3bd606610fe2&format=json", function(json) {
@@ -91,6 +103,7 @@ function lastFMAPICalls (lastfmuser, limit, period, year)
                   if (item_album_child.name == year && once == 0)
                   {
                     once++;
+                    global_once++;
                     data_boo = true;
                     html += "<p><a href=" + item.url + " target='_blank'>" + item.artist.name + " - " + item.name + " - " + "Play count : " + item.playcount + "</a></p>";
                     $('#topAlbumsYear').append(html);
@@ -104,9 +117,9 @@ function lastFMAPICalls (lastfmuser, limit, period, year)
       });
   });
 
- if (!data_boo)
- {
-  html = "<p>Nothing to list...</p>";
-  $('#topAlbumsYear').append(html);
- }
+  if (!data_boo && global_once > 0)
+  {
+    $('#topAlbumsYear').append("<p>Nothing to list...</p>");
+  }
+
 }

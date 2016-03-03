@@ -25,7 +25,7 @@
 <body ng-app="lastyearApp" ng-controller="formController">
 
   <div id="header">
-    <center><br/>lastyear</center>
+    <center><br/></center>
   </div>
   <div class="center-div-1">
     <img src="img/lastyear.png"/>
@@ -58,7 +58,7 @@
       </div>
       <div class="form-group">
         <br/>
-        <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid" ng-click="hideForm();">
+        <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid || buttonState" ng-click="hideForm();">
           Get the list!
         </button>
       </div>
