@@ -6,6 +6,7 @@ a:active{color:#ff7070;}
 .center-div-1{
 	float: left;
 	width:100%;
+	text-align: center;
 }
 
 .center-div-2{
@@ -24,6 +25,5 @@ a:active{color:#ff7070;}
 }
 
 .top-align{
-	vertical-align: center;
-	float: right;       
+	vertical-align: center;  
 }

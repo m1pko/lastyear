@@ -24,52 +24,49 @@
 
 <body ng-app="lastyearApp" ng-controller="formController">
 
-  <div id="header">
-    <center><br/></center>
+  <div class="center-div-1">
+    <center><img class="top-align" src="img/lastyear.jpg"/></center>
   </div>
   <div class="center-div-1">
-    <img class="top-align" src="img/lastyear.jpg"/>
-  </div>
-  <div class="center-div-1">
-    <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
-      <div class="form-group">
-        <label>Last Year (2000 to 2016)</label>
-        <input type="text" name="year" class="form-control" ng-model="year" ng-pattern="yearsrangeRegexp" required>
-      </div>
-      <div class="form-group">
-        <label>Last.fm User Name</label>
-        <input type="text" name="lastfmuser" class="form-control" ng-model="lastfmuser" ng-focus="userForm.lastfmuser.$setUntouched()" required>
-        <p ng-show="userForm.lastfmuser.$invalid && !userForm.lastfmuser.$pristine" class="help-block">You Last.fm username is required.</p>
-      </div>
-      <div class="form-group">
-        <label>Max Records (1 to 100)</label>
-        <input type="text" name="maxrecords" class="form-control" ng-model="maxrecords" ng-pattern="maxrecordsRegexp" required>
-      </div>
-      <div class="form-group">
-        <label>Period</label>
-        <select name="period" ng-model="period" class="form-control">
-          <option value="overall" selected>overall</option>
-          <option value="7day">7day</option>
-          <option value="1month">1month</option>
-          <option value="3month">3month</option>
-          <option value="6month">6month</option>
-          <option value="12month">12month</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <br/>
-        <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid || buttonState" ng-click="hideForm()">
-          Get the list!
-        </button>
-      </div>
-    </form>
+    <center>
+      <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+        <div class="form-group col-xs-4">
+          <label>Last Year (2000 to 2016)</label>
+          <input type="text" name="year" class="form-control" ng-model="year" ng-pattern="yearsrangeRegexp" required>
+          <label>Last.fm User Name</label>
+          <input type="text" name="lastfmuser" class="form-control" ng-model="lastfmuser" ng-focus="userForm.lastfmuser.$setUntouched()" required>
+          <p ng-show="userForm.lastfmuser.$invalid && !userForm.lastfmuser.$pristine" class="help-block">You Last.fm username is required.</p>
+          <label>Max Records (1 to 100)</label>
+          <input type="text" name="maxrecords" class="form-control" ng-model="maxrecords" ng-pattern="maxrecordsRegexp" required>
+          <label>Period</label>
+          <select name="period" ng-model="period" class="form-control">
+            <option value="overall" selected>overall</option>
+            <option value="7day">7day</option>
+            <option value="1month">1month</option>
+            <option value="3month">3month</option>
+            <option value="6month">6month</option>
+            <option value="12month">12month</option>
+          </select>
+        </div>
+        <div class="center-div-1 form-group">
+          <br/>
+          <center>
+            <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid || buttonState" ng-click="hideForm()">
+              Get the list!
+            </button>
+          </center>
+        </div>
+      </form>
+    </center>
   </div>
   <div id="topAlbumsYear" class="center-div-1" ng-controller="lastFMAPIs" ng-show="isListShowing && !isFormShowing"></div>
-  <div class="center-div-2" ng-show="isListShowing && !isFormShowing">
+  <div class="center-div-1" ng-show="isListShowing && !isFormShowing">
     <br />
-    <button type="submit" class="btn btn-primary" ng-click="hideList(); deleteDivContent();"> 
-      Clear
-    </button>
+    <center>
+      <button type="submit" class="btn btn-primary" ng-click="hideList(); deleteDivContent();"> 
+        Clear
+      </button>
+    </center>
   </div>
 </body>
 </html>
