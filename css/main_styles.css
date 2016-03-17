@@ -5,8 +5,7 @@ a:active{color:#ff7070;}
 
 .center-div-1{
 	float: left;
-	width:500px;
-	height:400px;
+	width:100%;
 }
 
 .center-div-2{
@@ -19,12 +18,12 @@ a:active{color:#ff7070;}
 
 #header {
 	float:left;
-	width: 1000px;
+	width: 100%;
 	height: 100px;
 	margin-top: 0px;
 }
 
 .top-align{
-	vertical-align: top;
+	vertical-align: center;
 	float: right;       
 }

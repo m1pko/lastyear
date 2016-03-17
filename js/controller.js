@@ -101,38 +101,39 @@ function lastFMAPICalls (lastfmuser, limit, period, year)
   var once, global_once = 0;
   var data_boo = false;
   $(document).ready(function() {
-      $.getJSON("http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + lastfmuser + "&period=" + period + "&limit=" + limit + "&api_key=8295890448112bd3f26d3bd606610fe2&format=json", function(json) {
+    $.getJSON("http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + lastfmuser + "&period=" + period + "&limit=" + limit + "&api_key=8295890448112bd3f26d3bd606610fe2&format=json", function(json) {
 
-          $.each(json.topalbums.album, function(i, item) {
+        $.each(json.topalbums.album, function(i, item) {
 
-            $.getJSON("http://ws.audioscrobbler.com/2.0/?method=album.getInfo&user=" + lastfmuser + "&artist=" + item.artist.name + "&album=" + item.name + "&api_key=8295890448112bd3f26d3bd606610fe2&format=json", function(json_album){
+          $.getJSON("http://ws.audioscrobbler.com/2.0/?method=album.getInfo&user=" + lastfmuser + "&artist=" + item.artist.name + "&album=" + item.name + "&api_key=8295890448112bd3f26d3bd606610fe2&format=json", function(json_album){
 
-              $.each(json_album.album.tags, function(j, item_album){
+            $.each(json_album.album.tags, function(j, item_album){
 
-                once = 0;
+              once = 0;
 
-                $.each(item_album, function(k,item_album_child){
+              $.each(item_album, function(k,item_album_child){
 
-                  if (item_album_child.name == year && once == 0)
-                  {
-                    once++;
-                    global_once++;
-                    data_boo = true;
-                    html += "<p><a href=" + item.url + " target='_blank'>" + item.artist.name + " - " + item.name + " - " + "Play count : " + item.playcount + "</a></p>";
-                    $('#topAlbumsYear').append(html);
-                    html = "";
-                  }
+                if (item_album_child.name == year && once == 0)
+                {
+                  once++;
+                  global_once++;
+                  data_boo = true;
+                  html += "<p><a href=" + item.url + " target='_blank'>" + item.artist.name + " - " + item.name + " - " + "Play count : " + item.playcount + "</a></p>";
+                  $('#topAlbumsYear').append(html);
+                  html = "";
+                }
 
-                });               
-              });
+              });               
             });
           });
-      });
-  });
+        });
+    });
 
-  if (!data_boo && global_once > 0)
-  {
-    $('#topAlbumsYear').append("<p>Nothing to list...</p>");
-  }
+    if ((!data_boo && global_once > 0) || !data_boo)
+    {
+      $('#topAlbumsYear').append("<p>Nothing to list...</p>");
+    }
+
+  });
 
 }
