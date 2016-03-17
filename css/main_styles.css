@@ -25,5 +25,6 @@ a:active{color:#ff7070;}
 }
 
 .top-align{
-	vertical-align: top;        
+	vertical-align: top;
+	float: right;       
 }
