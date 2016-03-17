@@ -19,8 +19,8 @@ lastyearApp.controller('formController', ['$scope','dataShare',function($scope,d
   $scope.maxrecordsRegexp = /^(?!0)(?=100$|..$|.$)\d+$/;
   $scope.yearsrangeRegexp = /^20[01][0-6]$/;
 
-  $scope.items = ['overall','7day','1month','3month','6month','12month'];
-  $scope.items.selected = $scope.items[0].value;
+  //$scope.items = ['overall','7day','1month','3month','6month','12month'];
+  //$scope.items.selected = $scope.items[0].value;
 
   // function to submit the form after all validation has occurred            
   $scope.submitForm = function(isValid) {
@@ -41,12 +41,16 @@ lastyearApp.controller('formController', ['$scope','dataShare',function($scope,d
 
   $scope.isFormShowing = true;
   $scope.isListShowing = false;
+  //$scope.userForm.lastfmuser.$touched = false;
   //$scope.buttonState = false;
   $scope.hideForm = function () {
     //If DIV is hidden it will be visible and vice versa.
     $scope.isFormShowing = false;
     $scope.isListShowing = true;
     $scope.submitForm.$setPristine();
+    $scope.submitForm.$setUntouched();
+    $scope.userForm.lastfmuser.$touched = false;
+
   };
   $scope.hideList = function () {
     //If DIV is hidden it will be visible and vice versa.
