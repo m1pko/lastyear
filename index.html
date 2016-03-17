@@ -24,13 +24,14 @@
 
 <body ng-app="lastyearApp" ng-controller="formController">
 
-  <div class="center-div-1">
-    <center><img class="top-align" src="img/lastyear.jpg"/></center>
-  </div>
-  <div class="center-div-1">
-    <center>
-      <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
-        <div class="form-group col-xs-4">
+  <div class="cntainer">
+    <div class="row">
+      <center><img class="top-align" src="img/lastyear.jpg"/></center>
+    </div>
+    <div>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-3">
+        <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
           <label>Last Year (2000 to 2016)</label>
           <input type="text" name="year" class="form-control" ng-model="year" ng-pattern="yearsrangeRegexp" required>
           <label>Last.fm User Name</label>
@@ -47,26 +48,24 @@
             <option value="6month">6month</option>
             <option value="12month">12month</option>
           </select>
-        </div>
-        <div class="center-div-1 form-group">
           <br/>
           <center>
             <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid || buttonState" ng-click="hideForm()">
               Get the list!
             </button>
           </center>
-        </div>
-      </form>
-    </center>
-  </div>
-  <div id="topAlbumsYear" class="center-div-1" ng-controller="lastFMAPIs" ng-show="isListShowing && !isFormShowing"></div>
-  <div class="center-div-1" ng-show="isListShowing && !isFormShowing">
-    <br />
-    <center>
-      <button type="submit" class="btn btn-primary" ng-click="hideList(); deleteDivContent();"> 
-        Clear
-      </button>
-    </center>
+        </form>
+      </div>
+    </div>
+    <div id="topAlbumsYear" class="row" ng-controller="lastFMAPIs" ng-show="isListShowing && !isFormShowing"></div>
+    <div class="row" ng-show="isListShowing && !isFormShowing">
+      <br />
+      <center>
+        <button type="submit" class="btn btn-primary" ng-click="hideList(); deleteDivContent();"> 
+          Clear
+        </button>
+      </center>
+    </div>
   </div>
 </body>
 </html>
