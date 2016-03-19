@@ -118,7 +118,7 @@ function lastFMAPICalls (lastfmuser, limit, period, year)
                   once++;
                   global_once++;
                   data_boo = true;
-                  html += "<p><a href=" + item.url + " target='_blank'>" + item.artist.name + " - " + item.name + " - " + "Play count : " + item.playcount + "</a></p>";
+                  html += "<center><p><a href=" + item.url + " target='_blank'>" + item.artist.name + " - " + item.name + " - " + "Play count : " + item.playcount + "</a></p></center>";
                   $('#topAlbumsYear').append(html);
                   html = "";
                 }
@@ -129,7 +129,7 @@ function lastFMAPICalls (lastfmuser, limit, period, year)
         });
     });
 
-    if ((!data_boo && global_once > 0) || !data_boo)
+    if (!data_boo && global_once > 0)
     {
       $('#topAlbumsYear').append("<p>Nothing to list...</p>");
     }

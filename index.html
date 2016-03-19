@@ -24,13 +24,16 @@
 
 <body ng-app="lastyearApp" ng-controller="formController">
 
-  <div class="cntainer">
+  <div class="container">
     <div class="row">
-      <center><img class="top-align" src="img/lastyear.jpg"/></center>
+      <div class="col-xs-12 col-md-12">
+          <center>
+              <img class="top-align" src="img/lastyear.jpg"/>
+          </center>
+      </div>
     </div>
-    <div>
     <div class="row">
-      <div class="col-md-4 col-md-offset-3">
+      <div class="col-xs-12 col-md-12">
         <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
           <label>Last Year (2000 to 2016)</label>
           <input type="text" name="year" class="form-control" ng-model="year" ng-pattern="yearsrangeRegexp" required>
@@ -53,19 +56,26 @@
             <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid || buttonState" ng-click="hideForm()">
               Get the list!
             </button>
+            <br />
           </center>
         </form>
       </div>
     </div>
-    <div id="topAlbumsYear" class="row" ng-controller="lastFMAPIs" ng-show="isListShowing && !isFormShowing"></div>
-    <div class="row" ng-show="isListShowing && !isFormShowing">
+    <div class="row">
       <br />
-      <center>
-        <button type="submit" class="btn btn-primary" ng-click="hideList(); deleteDivContent();"> 
-          Clear
-        </button>
-      </center>
+      <div id="topAlbumsYear" class="col-xs-12 col-md-12" ng-controller="lastFMAPIs" ng-show="isListShowing && !isFormShowing"></div>
+    </div>
+    <div class="row" ng-show="isListShowing && !isFormShowing">
+      <div class="col-xs-12 col-md-12">
+        <center>
+          <button type="submit" class="btn btn-primary" ng-click="hideList(); deleteDivContent();"> 
+            Clear
+          </button>
+        </center>
+        <br />
+      </div>
     </div>
   </div>
 </body>
+
 </html>

@@ -3,12 +3,6 @@ a:hover {color:#ff7070;}
 a:visited{color:#ff7070;}
 a:active{color:#ff7070;}
 
-#center-div-1{
-	float: left;
-	margin:0 auto;
-	width:100%;
-}
-
 #top-align{
 	vertical-align: center;  
 }
