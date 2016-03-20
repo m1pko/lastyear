@@ -35,29 +35,41 @@
     <div class="row">
       <div class="col-xs-12 col-md-12">
         <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
-          <label>Last Year (2000 to 2016)</label>
-          <input type="text" name="year" class="form-control" ng-model="year" ng-pattern="yearsrangeRegexp" required>
+          <div class="col-xs-6 col-md-6">
+            <label>Last Year (2000 to 2016)</label>
+            <input type="text" name="year" class="form-control" ng-model="year" ng-pattern="yearsrangeRegexp" required>
+          </div>
+          <div class="col-xs-6 col-md-6">
           <label>Last.fm User Name</label>
-          <input type="text" name="lastfmuser" class="form-control" ng-model="lastfmuser" ng-focus="userForm.lastfmuser.$setUntouched()" required>
-          <p ng-show="userForm.lastfmuser.$invalid && !userForm.lastfmuser.$pristine" class="help-block">You Last.fm username is required.</p>
-          <label>Max Records (1 to 100)</label>
-          <input type="text" name="maxrecords" class="form-control" ng-model="maxrecords" ng-pattern="maxrecordsRegexp" required>
-          <label>Period</label>
-          <select name="period" ng-model="period" class="form-control">
-            <option value="overall" selected>overall</option>
-            <option value="7day">7day</option>
-            <option value="1month">1month</option>
-            <option value="3month">3month</option>
-            <option value="6month">6month</option>
-            <option value="12month">12month</option>
-          </select>
-          <br/>
-          <center>
-            <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid || buttonState" ng-click="hideForm()">
-              Get the list!
-            </button>
+            <input type="text" name="lastfmuser" class="form-control" ng-model="lastfmuser" ng-focus="userForm.lastfmuser.$setUntouched()" required>
+            <p ng-show="userForm.lastfmuser.$invalid && !userForm.lastfmuser.$pristine" class="help-block">You Last.fm username is required.</p>
+          </div>
+          <div class="col-xs-6 col-md-6">
             <br />
-          </center>
+            <label>Max Records (1 to 100)</label>
+            <input type="text" name="maxrecords" class="form-control" ng-model="maxrecords" ng-pattern="maxrecordsRegexp" required>
+          </div>
+          <div class="col-xs-6 col-md-6">
+            <br />
+            <label>Period</label>
+            <select name="period" ng-model="period" class="form-control">
+              <option value="overall" selected>overall</option>
+              <option value="7day">7day</option>
+              <option value="1month">1month</option>
+              <option value="3month">3month</option>
+              <option value="6month">6month</option>
+              <option value="12month">12month</option>
+            </select>
+          </div>
+          <div class="col-xs-12 col-md-12">
+            <br />
+            <center>
+              <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid || buttonState" ng-click="hideForm()">
+                Get the list!
+              </button>
+              <br />
+            </center>
+          </div>
         </form>
       </div>
     </div>
