@@ -22,6 +22,22 @@ lastyearApp.controller('formController', ['$scope','dataShare',function($scope,d
   //$scope.items = ['overall','7day','1month','3month','6month','12month'];
   //$scope.items.selected = $scope.items[0].value;
 
+  $scope.yearsInBusiness = function () {
+    var separator = " - ";
+    var startYear = "2016";
+    var currentYear = new Date().getFullYear();
+
+    if (startYear.localeCompare(currentYear) == 0)
+    {
+      return startYear;
+    }
+    else
+    {
+      return startYear + separator + currentYear;
+    }
+
+  };
+
   // function to submit the form after all validation has occurred            
   $scope.submitForm = function(isValid) {
 
