@@ -115,8 +115,9 @@ lastyearApp.controller('footerNotes', ['$scope', function ($scope) {
 function lastFMAPICalls (lastfmuser, limit, period, year)
 {
   var html = "";
-  var once, global_once = 0;
+  var once, global_once, album_iterator = 0;
   var data_boo = false;
+  var albumArray = [];
   $(document).ready(function() {
     $.getJSON("http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + lastfmuser + "&period=" + period + "&limit=" + limit + "&api_key=8295890448112bd3f26d3bd606610fe2&format=json", function(json) {
 
@@ -135,6 +136,19 @@ function lastFMAPICalls (lastfmuser, limit, period, year)
                   once++;
                   global_once++;
                   data_boo = true;
+
+                  //lazy initialization
+                  if (!albumArray[album_iterator])
+                  {
+                    albumArray[album_iterator] = [];
+                  }
+
+                  albumArray[album_iterator][0] = item.name;
+                  albumArray[album_iterator][1] = item.artist.name;
+                  albumArray[album_iterator][2] = item.url;
+                  albumArray[album_iterator][3] = item.playcount;
+                  album_iterator++;
+                  
                   html += "<center><p><a href=" + item.url + " target='_blank'>" + item.artist.name + " - " + item.name + " - " + "Play count : " + item.playcount + "</a></p></center>";
                   $('#topAlbumsYear').append(html);
                   html = "";
