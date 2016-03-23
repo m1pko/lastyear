@@ -17,7 +17,7 @@ lastyearApp.factory('dataShare',function($rootScope){
 lastyearApp.controller('formController', ['$scope','dataShare',function($scope,dataShare) {
 
   $scope.maxrecordsRegexp = /^(?!0)(?=100$|..$|.$)\d+$/;
-  $scope.yearsrangeRegexp = /^20[01][0-6]$/;
+  $scope.yearsrangeRegexp = /^201[5-9]$/;
 
   //$scope.items = ['overall','7day','1month','3month','6month','12month'];
   //$scope.items.selected = $scope.items[0].value;
@@ -122,6 +122,8 @@ function lastFMAPICalls (lastfmuser, limit, period, year)
     $.getJSON("http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + lastfmuser + "&period=" + period + "&limit=" + limit + "&api_key=8295890448112bd3f26d3bd606610fe2&format=json", function(json) {
 
         $.each(json.topalbums.album, function(i, item) {
+
+          alert(item.image.text);
 
           $.getJSON("http://ws.audioscrobbler.com/2.0/?method=album.getInfo&user=" + lastfmuser + "&artist=" + item.artist.name + "&album=" + item.name + "&api_key=8295890448112bd3f26d3bd606610fe2&format=json", function(json_album){
 
