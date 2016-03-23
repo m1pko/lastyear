@@ -6,3 +6,7 @@ a:active{color:#ff7070;}
 #top-align{
 	vertical-align: center;  
 }
+
+.fixed_button_size {
+    width: 100px !important;
+}

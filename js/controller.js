@@ -41,14 +41,11 @@ lastyearApp.controller('formController', ['$scope','dataShare',function($scope,d
 
   $scope.isFormShowing = true;
   $scope.isListShowing = false;
-  //$scope.userForm.lastfmuser.$touched = false;
-  //$scope.buttonState = false;
+
   $scope.hideForm = function () {
     //If DIV is hidden it will be visible and vice versa.
     $scope.isFormShowing = false;
     $scope.isListShowing = true;
-    $scope.submitForm.$setPristine();
-    $scope.submitForm.$setUntouched();
     $scope.userForm.lastfmuser.$touched = false;
 
   };
@@ -123,7 +120,7 @@ function lastFMAPICalls (lastfmuser, limit, period, year)
 
         $.each(json.topalbums.album, function(i, item) {
 
-          alert(item.image.text);
+          //alert(item.image);
 
           $.getJSON("http://ws.audioscrobbler.com/2.0/?method=album.getInfo&user=" + lastfmuser + "&artist=" + item.artist.name + "&album=" + item.name + "&api_key=8295890448112bd3f26d3bd606610fe2&format=json", function(json_album){
 
@@ -154,6 +151,7 @@ function lastFMAPICalls (lastfmuser, limit, period, year)
                   html += "<center><p><a href=" + item.url + " target='_blank'>" + item.artist.name + " - " + item.name + " - " + "Play count : " + item.playcount + "</a></p></center>";
                   $('#topAlbumsYear').append(html);
                   html = "";
+
                 }
 
               });               

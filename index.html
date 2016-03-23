@@ -64,8 +64,11 @@
           <div class="col-xs-12 col-md-12">
             <br />
             <center>
-              <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid || buttonState" ng-click="hideForm()">
+              <button type="submit" class="btn btn-primary fixed_button_size" ng-disabled="userForm.$invalid || buttonState" ng-click="hideForm()">
                 Get the list!
+              </button>
+              <button type="submit" class="btn btn-primary fixed_button_size" ng-click="hideList(); deleteDivContent();"> 
+                Clear
               </button>
               <br />
             </center>
@@ -80,7 +83,7 @@
     <div class="row" ng-show="isListShowing && !isFormShowing">
       <div class="col-xs-12 col-md-12">
         <center>
-          <button type="submit" class="btn btn-primary" ng-click="hideList(); deleteDivContent();"> 
+          <button type="submit" class="btn btn-primary fixed_button_size" ng-click="hideList(); deleteDivContent();"> 
             Clear
           </button>
         </center>
