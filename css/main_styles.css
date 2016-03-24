@@ -3,28 +3,10 @@ a:hover {color:#ff7070;}
 a:visited{color:#ff7070;}
 a:active{color:#ff7070;}
 
-.center-div-1{
-	float: left;
-	width:500px;
-	height:400px;
+#top-align{
+	vertical-align: center;  
 }
 
-.center-div-2{
-	float: left;
-	width:1000px;
-	margin:0 auto;
-	padding:10px;
-	text-align: center;
-}
-
-#header {
-	float:left;
-	width: 1000px;
-	height: 100px;
-	margin-top: 0px;
-}
-
-.top-align{
-	vertical-align: top;
-	float: right;       
+.fixed_button_size {
+    width: 100px !important;
 }
