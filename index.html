@@ -40,9 +40,8 @@
             <input type="text" name="year" class="form-control" ng-model="year" ng-pattern="yearsrangeRegexp" required>
           </div>
           <div class="col-xs-6 col-md-6">
-          <label>Last.fm User Name</label>
+            <label>Last.fm User Name</label>
             <input type="text" name="lastfmuser" class="form-control" ng-model="lastfmuser" ng-focus="userForm.lastfmuser.$setUntouched()" required>
-            <p ng-show="userForm.lastfmuser.$invalid && !userForm.lastfmuser.$pristine" class="help-block">You Last.fm username is required.</p>
           </div>
           <div class="col-xs-6 col-md-6">
             <br />
@@ -52,7 +51,7 @@
           <div class="col-xs-6 col-md-6">
             <br />
             <label>Period</label>
-            <select name="period" ng-model="period" class="form-control">
+            <select name="period" ng-model="period" class="form-control" required>
               <option value="overall" selected>overall</option>
               <option value="7day">7day</option>
               <option value="1month">1month</option>
@@ -62,12 +61,12 @@
             </select>
           </div>
           <div class="col-xs-12 col-md-12">
-            <br />
+            <br /><br />
             <center>
-              <button type="submit" class="btn btn-primary fixed_button_size" ng-disabled="userForm.$invalid || buttonState" ng-click="hideForm()">
+              <button type="submit" class="btn btn-primary fixed_button_size" ng-disabled="userForm.$invalid" ng-click="hideForm()">
                 Get the list!
               </button>
-              <button type="submit" class="btn btn-primary fixed_button_size" ng-click="hideList(); deleteDivContent();"> 
+              <button type="submit" class="btn btn-primary fixed_button_size" ng-click="hideList(); deleteDivContent(); resetForm();"> 
                 Clear
               </button>
               <br />
@@ -80,19 +79,10 @@
       <br />
       <div id="topAlbumsYear" class="col-xs-12 col-md-12" ng-controller="lastFMAPIs" ng-show="isListShowing && !isFormShowing"></div>
     </div>
-    <div class="row" ng-show="isListShowing && !isFormShowing">
-      <div class="col-xs-12 col-md-12">
-        <center>
-          <button type="submit" class="btn btn-primary fixed_button_size" ng-click="hideList(); deleteDivContent();"> 
-            Clear
-          </button>
-        </center>
-        <br />
-      </div>
-    </div>
     <div class="row">
       <div class="col-xs-12 col-md-12">
         <footer ng-controller="footerNotes">
+          <br />
           <center>
               ndn {{ yearsInBusiness }}
               <br/>

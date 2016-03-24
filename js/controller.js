@@ -29,6 +29,10 @@ lastyearApp.controller('formController', ['$scope','dataShare',function($scope,d
     if (isValid) {
       dataShare.sendData($scope.lastfmuser + "@" + $scope.maxrecords + "@" + $scope.period + "@" + $scope.year);
     }
+    else
+    {
+      $scope.buttonState = false;
+    }
 
     $scope.buttonState = true;
 
@@ -53,7 +57,6 @@ lastyearApp.controller('formController', ['$scope','dataShare',function($scope,d
     //If DIV is hidden it will be visible and vice versa.
     $scope.isFormShowing = true;
     $scope.isListShowing = false;
-    $scope.buttonState = false;
 
     $scope.year = "";
     $scope.lastfmuser = "";
@@ -62,13 +65,15 @@ lastyearApp.controller('formController', ['$scope','dataShare',function($scope,d
 
   };
 
+  $scope.resetForm = function() {
+    $scope.userForm.$setPristine();
+  };
+
   $scope.deleteDivContent = function()
                           {
                             var divElem = angular.element(document.querySelector('#topAlbumsYear'));
                             divElem.empty();
                           };
-
-
 
 }]);
 
@@ -80,13 +85,6 @@ lastyearApp.controller('lastFMAPIs', ['$scope','dataShare',
                                   var text =  dataShare.getData();
                                   var paramArray = text.split("@");
                                   lastFMAPICalls(paramArray[0],paramArray[1],paramArray[2],paramArray[3]);
-                                  //var divElem = angular.element(document.querySelector('#topAlbumsYear'));
-                                  //alert(divElem.t);
-                                  //divElem.text == ""
-                                  //if (divElem.text == "")
-                                  //{
-                                  //  $('#topAlbumsYear').append("<p>Nothing to list...</p>");
-                                  //}
       });
       
     }
