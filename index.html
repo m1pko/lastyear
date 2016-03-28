@@ -51,33 +51,25 @@
           <div class="col-xs-6 col-md-6">
             <br />
             <label>Period</label>
-            <select name="period" ng-model="period" class="form-control" required>
-              <option value="overall" selected>overall</option>
-              <option value="7day">7day</option>
-              <option value="1month">1month</option>
-              <option value="3month">3month</option>
-              <option value="6month">6month</option>
-              <option value="12month">12month</option>
+            <select name="period" ng-model="period" ng-options="item as item for item in items" class="form-control" required>
             </select>
           </div>
           <div class="col-xs-12 col-md-12">
             <br /><br />
             <center>
-              <button type="submit" class="btn btn-primary fixed_button_size" ng-disabled="userForm.$invalid" ng-click="hideForm()">
+              <button type="submit" class="btn btn-primary fixed_button_size" ng-disabled="userForm.$invalid" ng-click="hideForm(); deleteDivContent();">
                 Get the list!
               </button>
               <button type="submit" class="btn btn-primary fixed_button_size" ng-click="hideList(); deleteDivContent(); resetForm();"> 
                 Clear
               </button>
-              <br />
+              <br /><br />
             </center>
           </div>
         </form>
       </div>
     </div>
-    <div class="row">
-      <br />
-      <div id="topAlbumsYear" class="col-xs-12 col-md-12" ng-controller="lastFMAPIs" ng-show="isListShowing && !isFormShowing"></div>
+    <div id="topAlbumsYear" ng-controller="lastFMAPIs" ng-show="isListShowing && !isFormShowing">
     </div>
     <div class="row">
       <div class="col-xs-12 col-md-12">
@@ -87,6 +79,7 @@
               ndn {{ yearsInBusiness }}
               <br/>
               <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a>
+              <br />
           </center>
         </footer>
       </div>

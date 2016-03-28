@@ -19,8 +19,8 @@ lastyearApp.controller('formController', ['$scope','dataShare',function($scope,d
   $scope.maxrecordsRegexp = /^(?!0)(?=100$|..$|.$)\d+$/;
   $scope.yearsrangeRegexp = /^201[5-9]$/;
 
-  //$scope.items = ['overall','7day','1month','3month','6month','12month'];
-  //$scope.items.selected = $scope.items[0].value;
+  $scope.items = ['12month','6month','3month','1month','7day'];
+  $scope.period = $scope.items[0];
 
   // function to submit the form after all validation has occurred            
   $scope.submitForm = function(isValid) {
@@ -62,6 +62,8 @@ lastyearApp.controller('formController', ['$scope','dataShare',function($scope,d
     $scope.lastfmuser = "";
     $scope.maxrecords = "";
     $scope.period = "";
+
+    $scope.period = $scope.items[0];
 
   };
 
@@ -113,12 +115,20 @@ function lastFMAPICalls (lastfmuser, limit, period, year)
   var once, global_once, album_iterator = 0;
   var data_boo = false;
   var albumArray = [];
+
+  html = "<div class='row'>" +
+            "<div class='col-xs-12 col-md-12 text-right'>" +
+              "<center><h3>" + lastfmuser + "'s best albuns of " + year + "</h3><br /></center>" +
+            "</div>" +
+          "</div>";
+
+  $('#topAlbumsYear').append(html);
+  html = "";
+
   $(document).ready(function() {
     $.getJSON("http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + lastfmuser + "&period=" + period + "&limit=" + limit + "&api_key=8295890448112bd3f26d3bd606610fe2&format=json", function(json) {
 
         $.each(json.topalbums.album, function(i, item) {
-
-          //alert(item.image);
 
           $.getJSON("http://ws.audioscrobbler.com/2.0/?method=album.getInfo&user=" + lastfmuser + "&artist=" + item.artist.name + "&album=" + item.name + "&api_key=8295890448112bd3f26d3bd606610fe2&format=json", function(json_album){
 
@@ -146,7 +156,17 @@ function lastFMAPICalls (lastfmuser, limit, period, year)
                   albumArray[album_iterator][3] = item.playcount;
                   album_iterator++;
                   
-                  html += "<center><p><a href=" + item.url + " target='_blank'>" + item.artist.name + " - " + item.name + " - " + "Play count : " + item.playcount + "</a></p></center>";
+                  //html += "<center><p><a href=" + item.url + " target='_blank'>" + item.artist.name + " - " + item.name + " - " + "Play count : " + item.playcount + "</a></p></center>";
+                  html += "<div class='row'>" +
+                            "<div class='col-xs-5 col-md-5 text-right'>" +
+                              "<img src='" + item.image[1]['#text'] + ".jpg' />" +
+                            "</div>" +
+                            "<div class='col-xs-7 col-md-7 text-left'>" +
+                              "<p><strong>" + item.artist.name + "</strong></p>" +
+                              "<p><a href='" + item.url + "' target='_blank'>" + item.name + "</a> | " + item.playcount + " plays</p>" +
+                            "</div>" +
+                          "</div>";
+
                   $('#topAlbumsYear').append(html);
                   html = "";
 
